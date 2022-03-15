@@ -206,3 +206,14 @@ ja:
       short: "%m/%d %H:%M"
     pm: 午後
   hello: こんにちは
+  new book: "新しい%{name}の作成"
+  editing book: "%{name}の編集"
+  show: 詳細
+  edit: 編集
+  destroy: 消去
+  back: 戻る
+  updated: "%{name}の更新をしました。"
+  created: "%{name}の作成をしました。"
+  destroyed: "%{name}の削除をしました。"
+  sure?: よろしいですか？
+      

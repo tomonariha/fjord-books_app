@@ -5,20 +5,7 @@ ja:
 
     attributes:
       book:
-        Author: 著者  
-        author: 著者  
-        Memo: メモ  
-        memo: メモ  
-        Picture: 写真  
-        picture: 写真  
-        Title: タイトル  
+        author: 著者    
+        memo: メモ   
+        picture: 写真    
         title: タイトル  
-
-  Books: 本
-  New Book: 新しい本を追加
-  Editing Book: 本を編集する
-  Show: 詳細
-  Edit: 編集
-  Destroy: 消去
-  Back: 戻る
-      
