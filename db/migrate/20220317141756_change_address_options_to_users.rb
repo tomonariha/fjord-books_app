@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ChangeAdressOptionsToUsers < ActiveRecord::Migration[6.1]
-  def Up
+  def up
     change_culumn :users, :address, :string, null: true, default: nil
   end
 
