@@ -5,12 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :avatar
-  has_many :active_follow_relationships, class_name: "FollowRelationship",
-                                         foreign_key: "follower_id",
-                                         dependent: :destroy
-  has_many :passive_follow_relationships, class_name: "FollowRelationship",
-                                         foreign_key: "followed_id",
-                                         dependent: :destroy
+  has_many :active_follow_relationships, class_name: 'FollowRelationship',
+                                         foreign_key: 'follower_id',
+                                         dependent: :destroy,
+                                         inverse_of: 'follower'
+  has_many :passive_follow_relationships, class_name: 'FollowRelationship',
+                                          foreign_key: 'followed_id',
+                                          dependent: :destroy,
+                                          inverse_of: 'followed'
   has_many :followings, through: :active_follow_relationships, source: :followed
   has_many :followers, through: :passive_follow_relationships, source: :follower
 
