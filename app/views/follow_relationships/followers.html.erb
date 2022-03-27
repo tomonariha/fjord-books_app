@@ -1,0 +1,8 @@
+<% @followers.each do |follower| %>
+  <table>
+    <tr>
+      <td> <%= follower.name %> </td>
+      <td><%= link_to t('views.common.profile'), user_path(follower) %></td>
+    <tr>
+  </table>
+<% end %>
