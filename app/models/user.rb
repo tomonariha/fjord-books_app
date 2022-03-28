@@ -5,6 +5,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  PAGE = 1
-  paginates_per PAGE
+  USERS = 10
+  paginates_per USERS
 end

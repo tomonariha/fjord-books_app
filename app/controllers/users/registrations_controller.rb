@@ -10,7 +10,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name profile post_code address])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[name profile post_code address])
+    keys = %i[name post_code address profile]
+    devise_parameter_sanitizer.permit(:sign_up, keys: keys)
+    devise_parameter_sanitizer.permit(:account_update, keys: keys)
   end
 end
