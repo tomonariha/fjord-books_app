@@ -27,4 +27,6 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+
+  paginates_per 10
 end
