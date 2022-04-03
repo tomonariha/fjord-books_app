@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= t('views.common.title_show', name: Report.model_name.human) %></h1>
+
+<p>
+  <strong><%= Report.human_attribute_name(:created_at) %>:</strong>
+  <%= @report.created_at.strftime(format = '%F') %>
+</p>
+
+<p>
+  <strong><%= Report.human_attribute_name(:title) %>:</strong>
+  <%= @report.title %>
+</p>
+
+<p>
+  <strong><%= Report.human_attribute_name(:content) %>:</strong>
+  <%= @report.content %>
+</p>
+
+<p>
+  <strong><%= Report.human_attribute_name(:author) %>:</strong>
+  <%= @report.user.name %>
+</p>
+
+<h2><%= Comment.model_name.human %></h2>
+<p>
+  <% @comments.each do |comment| %>
+    <tr>
+      <td><%= comment.content %></td>
+      <% if comment.user.name.empty? %>
+        <td><%= comment.user.email %></td>
+      <% else %>
+        <td><%= comment.user.name %></td>
+      <% end %>
+      <td><%= comment.created_at.strftime(format = '%F %R') %></td>
+      <% if current_user.id == comment.user.id %>
+        <td><%= link_to t('views.common.destroy'), [@report, comment], method: :delete, data: { confirm: t('views.common.delete_confirm') } %></td>
+      <% end %>
+      <br>
+    </tr>
+  <% end %>
+</p>
+
+<%= form_with(model: [@commentable, Comment.new]) do |form| %>
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <%= hidden_field_tag :model, :report %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to t('views.common.edit'), edit_report_path(@report) %> |
+<%= link_to t('views.common.back'), reports_path %>
