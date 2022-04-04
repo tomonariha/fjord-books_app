@@ -33,8 +33,8 @@
   <% end %>
 </p>
 
-<p><%= link_to t('.followings')+": #{@user.followings.count}", followings_follow_relationship_path(@user.id) %></p>
-<p><%= link_to t('.followers')+": #{@user.followers.count}", followers_follow_relationship_path(@user.id) %></p>
+<p><%= link_to t('.followings')+": #{@user.followings.count}", followings_follow_relationship_path(user_id: @user.id) %></p>
+<p><%= link_to t('.followers')+": #{@user.followers.count}", followers_follow_relationship_path(user_id: @user.id) %></p>
 <% unless @user == current_user %>
   <% if current_user.following?(@user) %>
     <%= link_to t('.unfollow'), follow_relationship_path(user_id: @user.id), method: :delete %>

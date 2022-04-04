@@ -1,23 +1,29 @@
 # frozen_string_literal: true
 
 class FollowRelationshipsController < ApplicationController
+  before_action :set_user
+
   def create
-    current_user.follow(params[:user_id])
-    redirect_to request.referer
+    current_user.follow(@user)
+    redirect_to user_path(@user)
   end
 
   def destroy
-    current_user.unfollow(params[:user_id])
-    redirect_to request.referer
+    current_user.unfollow(@user)
+    redirect_to user_path(@user)
   end
 
   def followings
-    user = User.find(params[:id])
-    @followings = user.followings.order(:id).page(params[:page])
+    @followings = @user.followings.order(:id).page(params[:page])
   end
 
   def followers
-    user = User.find(params[:id])
-    @followers = user.followers.order(:id).page(params[:page])
+    @followers = @user.followers.order(:id).page(params[:page])
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 end
