@@ -8,15 +8,15 @@ class ReportsController < ApplicationController
     @reports = Report.all
   end
 
+  # GET /reports/new
+  def new
+    @report = Report.new
+  end
+
   # GET /reports/1 or /reports/1.json
   def show
     @commentable = @report
     @comments = @report.comments.order(:id)
-  end
-
-  # GET /reports/new
-  def new
-    @report = Report.new
   end
 
   # GET /reports/1/edit
@@ -25,6 +25,7 @@ class ReportsController < ApplicationController
   # POST /reports or /reports.json
   def create
     @report = Report.new(report_params)
+
     respond_to do |format|
       if @report.save
         format.html { redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human) }
@@ -53,7 +54,7 @@ class ReportsController < ApplicationController
   def destroy
     @report.destroy
     respond_to do |format|
-      format.html { redirect_to reports_url, notice: t('controllers.common.notice_destroy', name: Book.model_name.human) }
+      format.html { redirect_to reports_url, notice: t('controllers.common.notice_destroy', name: Report.model_name.human) }
       format.json { head :no_content }
     end
   end

@@ -2,13 +2,7 @@
 
 class CommentsController < ApplicationController
   def create
-    case params[:model]
-    when 'book'
-      commentable = Book.find(params[:book_id])
-    when 'report'
-      commentable = Report.find(params[:report_id])
-    end
-    comment = commentable.comments.build(comment_params)
+    comment = @commentable.comments.build(comment_params)
     comment.user_id = current_user.id
     comment.save
     redirect_to request.referer
