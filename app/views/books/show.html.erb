@@ -20,35 +20,7 @@
   <%= image_tag(@book.picture_url) if @book.picture.present? %>
 </p>
 
-<h2><%= Comment.model_name.human %></h2>
-<p>
-  <% @comments.each do |comment| %>
-    <tr>
-      <td><%= comment.content %></td>
-      <% if comment.user.name.empty? %>
-        <td><%= comment.user.email %></td>
-      <% else %>
-        <td><%= comment.user.name %></td>
-      <% end %>
-      <td><%= comment.created_at.strftime(format = '%F %R') %></td>
-      <% if current_user.id == comment.user.id %>
-        <td><%= link_to t('views.common.destroy'), [@book, comment], method: :delete, data: { confirm: t('views.common.delete_confirm') } %></td>
-      <% end %>
-      <br>
-    </tr>
-  <% end %>
-</p>
-
-<%= form_with(model: [@commentable, Comment.new]) do |form| %>
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<%= render partial: 'shared/comment', locals: { commentable: @commentable, comments: @comments } %>
 
 <%= link_to t('views.common.edit'), edit_book_path(@book) %> |
 <%= link_to t('views.common.back'), books_path %>
