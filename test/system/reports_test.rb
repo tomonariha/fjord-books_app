@@ -20,8 +20,8 @@ class ReportsTest < ApplicationSystemTestCase
     fill_in '内容', with: 'テスト楽しい'
     click_button '登録する'
     assert_text '日報が作成されました。'
-    assert_text 'テスト入門'
-    assert_text 'テスト楽しい'
+    @report = Report.find(2)
+    assert_equal('テスト入門', @report.title)
   end
 
   test 'update report' do
@@ -30,8 +30,8 @@ class ReportsTest < ApplicationSystemTestCase
     fill_in '内容', with: 'テスト便利'
     click_button '更新する'
     assert_text '日報が更新されました。'
-    assert_text 'テスト入門改訂版'
-    assert_text 'テスト便利'
+    @report.reload
+    assert_equal('テスト入門改訂版', @report.title)
   end
 
   test 'delete report' do
