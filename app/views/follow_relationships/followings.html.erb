@@ -1,0 +1,12 @@
+<h1><%= t('users.show.followings') %></h1>
+<% @followings.each do |following| %>
+  <table>
+    <tr>
+      <td> <%= following.email %> </td>
+      <td> <%= following.name %> </td>
+      <td><%= link_to t('views.common.profile'), user_path(following) %></td>
+    <tr>
+  </table>
+<% end %>
+
+<%= paginate @followings %>
